@@ -4,23 +4,34 @@
 // 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1';
 
 import Search from './js/models/search';
+import { elements } from './base';
+import * as searchView from '../src/views/searchView.js';
 
 const state = {};
 
+// Search Controller
 const searchController = async () =>{
-    const keyword = document.getElementById('txt-keyword').value;
+    const keyword = elements.searchInput.value;
     if(keyword){
         state.search = new Search(keyword);
         await state.search.getResults();
 
-        console.log(state.search.data.results)
+        searchView.clearInput();
+        searchView.clearResults();
+        searchView.displayResults(state.search.data)
     } else {
         alert('Please enter a keyword');
     }
 
 }
 
-document.getElementById('form-search').addEventListener('submit', e => {
+elements.searchForm.addEventListener('submit', e => {
     e.preventDefault();
     searchController();
 });
+
+// Movie Controller
+
+const movie = new Movie(252291);
+movie.GetMovie();
+console.log(movie);
