@@ -1,13 +1,12 @@
 import {api_key, base_url} from "../../config.js";
 
-export class Movie {
+export default class Movie {
     constructor(id){
         this.id = id;
     }
 
-    async GetMovie(){
+    async getMovie(){
         const response = await fetch(`${base_url}/movie/${this.id}?api_key=${api_key}`)
         this.data = await response.json();
-        console.log(this.data)
     }
 }

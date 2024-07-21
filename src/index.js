@@ -6,6 +6,8 @@
 import Search from './js/models/search';
 import { elements } from './base';
 import * as searchView from '../src/views/searchView.js';
+import * as movieView from '../src/views/movieView.js';
+import Movie from './js/models/Movie.js';
 
 const state = {};
 
@@ -32,6 +34,14 @@ elements.searchForm.addEventListener('submit', e => {
 
 // Movie Controller
 
-const movie = new Movie(252291);
-movie.GetMovie();
-console.log(movie);
+const movieController = async() =>{
+    const id = window.location.hash.replace('#', '');
+    if (id){
+        state.movie = new Movie(id);
+        await state.movie.getMovie();
+        movieView.displayMovie(state.movie.data);
+        movieView.backToTop();
+    }
+}
+
+window.addEventListener('hashchange', movieController);
