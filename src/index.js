@@ -4,7 +4,7 @@
 // 'https://api.themoviedb.org/3/search/movie?include_adult=false&language=en-US&page=1';
 
 import Search from './js/models/search';
-import { elements } from './base';
+import { elements} from './base';
 import * as searchView from '../src/views/searchView.js';
 import * as movieView from '../src/views/movieView.js';
 import Movie from './js/models/Movie.js';
@@ -20,7 +20,8 @@ const searchController = async () =>{
 
         searchView.clearInput();
         searchView.clearResults();
-        searchView.displayResults(state.search.data)
+
+        searchView.displayResults(keyword, state.search.data)
     } else {
         alert('Please enter a keyword');
     }
@@ -45,3 +46,4 @@ const movieController = async() =>{
 }
 
 window.addEventListener('hashchange', movieController);
+elements.movieDetailsClose.addEventListener('click',movieView.movieDetailsClose)

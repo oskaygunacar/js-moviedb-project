@@ -35,3 +35,7 @@ export const displayMovie = movie =>{
 export const backToTop = () =>{
     window.scrollTo({top: 0, behavior: 'smooth'});
 }
+
+export const movieDetailsClose = () => {
+    elements.movieDetailsContainer.classList.add('d-none');
+}
